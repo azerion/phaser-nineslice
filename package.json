@@ -11,15 +11,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://gitlab.ds.orangegames.com/js-libs/phaser-nineslice.git"
+    "url": "git@github.com:orange-games/phaser-nineslice.git"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://gitlab.ds.orangegames.com/js-libs/phaser-nineslice/raw/master/LICENSE"
+      "url": "https://github.com/orange-games/phaser-nineslice/raw/master/LICENSE"
     }
   ],
-  "private": true,
   "devDependencies": {
     "grunt": "0.4.x",
     "grunt-banner": "^0.6.0",
