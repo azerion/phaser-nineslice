@@ -3,7 +3,7 @@
  * NineSlice plugin for Phaser.io!
  *
  * OrangeGames
- * Build at 19-01-2016
+ * Build at 03-02-2016
  * Released under MIT License 
  */
 

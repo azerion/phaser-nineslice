@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Example for Phaser Nine Slice</title>
+
+    <!-- Include Phaser Nine Slice JS -->
+    <script type="text/javascript" src="../node_modules/phaser/build/phaser.js"></script>
+    <script type="text/javascript" src="../build/phaser-nineslice.js"></script>
+
+    <!-- Game we want to track -->
+    <script type="text/javascript">
+        var canvasLength = 500;
+        var canvasWidth = 300;
+        var game = new Phaser.Game(canvasLength, canvasWidth, Phaser.AUTO, '', { preload: preload, create: create, update:update});
+        var sliceContainer = null;
+
+        //  w & l = width and length of the image
+        //
+        var w = 48;
+        var l = 100;
+        var expansionRateW = 2;
+        var expansionRateH = 2;
+
+
+        function preload(){
+            // add plugins in one of the states
+            game.plugins.add(Fabrique.Plugins.NineSlice);
+
+            game.load.nineSlice('robot', 'image.png', 24);
+
+        }
+
+        function create(){
+            sliceContainer = game.add.nineSlice(5, 5, 'robot', 48, 48);
+        }
+
+
+        function update(){
+            //for initial loading of page
+            // when the page is first loaded, sliceContainer will be empty
+            if (null === sliceContainer) {
+                return;
+            }
+
+            w += expansionRateW;
+            l += expansionRateH;
+
+            expand();
+            sliceContainer.resize(l, w);
+        }
+
+        function expand(){
+            if(w > canvasWidth || w <= 48){
+                expansionRateW = -expansionRateW;
+            }
+
+            if(l > canvasLength || l <= 48){
+                expansionRateH = -expansionRateH;
+            }
+
+        }
+
+
+
+    </script>
+
+</head>
+<body>
+</body>
+</html>
