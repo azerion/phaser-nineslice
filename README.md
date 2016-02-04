@@ -71,7 +71,9 @@ nineSlice.y = 50;
 game.add.existing(nineSlice);
 ```
 
-##Resize method
+
+### Resize method
+
 9Slice container has a resize method which lets you expand/shorten the width or length of the image.
 When using resize method, make sure values are not lower than the width of the image corners
 
