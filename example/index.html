@@ -12,10 +12,9 @@
         var canvasLength = 500;
         var canvasWidth = 300;
         var game = new Phaser.Game(canvasLength, canvasWidth, Phaser.AUTO, '', { preload: preload, create: create, update:update});
-        // Create variable which will later contain Phaser Nine Slice object e.g. var sliceContainer
         var sliceContainer = null;
 
-        //  w & l = width and length of the image. Image used in example is a rectangle.
+        //  w & l = width and length of the image
         //Check the width of the corners. Make sure your var w = corner width * 2
         //expansionRateW and expansionRateH will control increase and decrease of width and length
         var w = 48;
@@ -33,18 +32,15 @@
         }
 
         function create(){
-            // To use Phaser Nine Slice, it must first be assigned to a variable.
-            //Note:  Initial scaling numbers must not be lower than the width of the image corners
+            // add a container for 9slice
+            //Note:  Initial scaling numbers must not be lower than the width of the imageś corners
             sliceContainer = game.add.nineSlice(5, 5, 'robot', 48, 48);
         }
 
 
         function update(){
-            // w and l are updated dynamically when the values are placed in Phaser State e.g. update
-
+            // w and l are updated dynamically when the values are placed in Phaser State
             if (null === sliceContainer) {
-                //for initial loading of page
-                // when the page is first loaded, sliceContainer will be empty
                 return;
             }
 
@@ -60,8 +56,6 @@
         }
 
         function expand(){
-            // checks if w and l exceed canvas max width and length
-            // if yes, decreases using expansionRateW and expansionRateH
             // Note: when scaling, make sure w or l does not drop below the width of the image corners
             if(w > canvasWidth || w <= 48){
                 expansionRateW = -expansionRateW;
