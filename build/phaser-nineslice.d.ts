@@ -1,5 +1,6 @@
 declare module Fabrique {
-    class NineSlice extends Phaser.Image {
+    import NineSliceCacheData = Fabrique.Plugins.NineSliceCacheData;
+    class NineSlice extends Phaser.Sprite {
         /**
          * The sizes of the edges
          */
@@ -16,11 +17,9 @@ declare module Fabrique {
          * The original texture, unmodified
          */
         baseTexture: PIXI.BaseTexture;
-        /**
-         * The new texture based on the baseTexture, we use a RenderTexture to construct it
-         */
         texture: Phaser.RenderTexture;
-        constructor(game: Fabrique.Plugins.NineSliceGame, x: number, y: number, key: string, width: number, height: number);
+        private baseFrame;
+        constructor(game: Fabrique.Plugins.NineSliceGame, x: number, y: number, key: string, frame: string, width: number, height: number, data?: NineSliceCacheData);
         /**
          * Redraw the the current texture to adjust for the new sizes;
          */
@@ -47,16 +46,16 @@ declare module Fabrique {
 declare module Fabrique {
     module Plugins {
         interface NineSliceObjectFactory extends Phaser.GameObjectFactory {
-            nineSlice: (x: number, y: number, key: string, width: number, height: number, group?: Phaser.Group) => Fabrique.NineSlice;
+            nineSlice: (x: number, y: number, key: string, frame: string, width: number, height: number, group?: Phaser.Group) => Fabrique.NineSlice;
         }
         interface NineSliceObjectCreator extends Phaser.GameObjectCreator {
-            nineSlice: (x: number, y: number, key: string, width: number, height: number, group?: Phaser.Group) => Fabrique.NineSlice;
+            nineSlice: (x: number, y: number, key: string, frame: string, width: number, height: number, group?: Phaser.Group) => Fabrique.NineSlice;
         }
         interface NineSliceCache extends Phaser.Cache {
-            addNineSlice: (key: string, data: any) => void;
-            getNineSlice: (key: string) => any;
+            addNineSlice: (key: string, data: NineSliceCacheData) => void;
+            getNineSlice: (key: string) => NineSliceCacheData;
             nineSlice: {
-                [key: string]: any;
+                [key: string]: NineSliceCacheData;
             };
         }
         interface NineSliceLoader extends Phaser.Loader {
@@ -68,8 +67,14 @@ declare module Fabrique {
             load: NineSliceLoader;
             cache: NineSliceCache;
         }
+        interface NineSliceCacheData {
+            top: number;
+            bottom?: number;
+            left?: number;
+            right?: number;
+        }
         class NineSlice extends Phaser.Plugin {
-            constructor(game: Phaser.Game, parent: PIXI.DisplayObject);
+            constructor(game: Phaser.Game, parent: Phaser.PluginManager);
             private addNineSliceLoader();
             /**
              * Extends the GameObjectFactory prototype with the support of adding NineSlice. this allows us to add NineSlice methods to the game just like any other object:

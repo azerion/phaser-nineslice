@@ -1,16 +1,16 @@
 module Fabrique {
     export module Plugins {
         export interface NineSliceObjectFactory extends Phaser.GameObjectFactory {
-            nineSlice: (x:number, y:number, key:string, width:number, height:number, group?:Phaser.Group) => Fabrique.NineSlice;
+            nineSlice: (x:number, y:number, key:string, frame: string, width:number, height:number, group?:Phaser.Group) => Fabrique.NineSlice;
         }
         export interface NineSliceObjectCreator extends Phaser.GameObjectCreator {
-            nineSlice: (x:number, y:number, key:string, width:number, height:number, group?:Phaser.Group) => Fabrique.NineSlice;
+            nineSlice: (x:number, y:number, key:string, frame: string, width:number, height:number, group?:Phaser.Group) => Fabrique.NineSlice;
         }
 
         export interface NineSliceCache extends Phaser.Cache {
-            addNineSlice: (key:string, data:any) => void;
-            getNineSlice: (key:string) => any;
-            nineSlice: {[key: string]: any};
+            addNineSlice: (key:string, data:NineSliceCacheData) => void;
+            getNineSlice: (key:string) => NineSliceCacheData;
+            nineSlice: {[key: string]: NineSliceCacheData};
         }
 
         export interface NineSliceLoader extends Phaser.Loader {
@@ -24,8 +24,15 @@ module Fabrique {
             cache: NineSliceCache;
         }
 
+        export interface NineSliceCacheData {
+            top: number;
+            bottom?: number;
+            left?: number;
+            right?: number;
+        }
+
         export class NineSlice extends Phaser.Plugin {
-            constructor(game:Phaser.Game, parent:PIXI.DisplayObject) {
+            constructor(game:Phaser.Game, parent: Phaser.PluginManager) {
                 super(game, parent);
 
                 this.addNineSliceCache();
@@ -35,25 +42,21 @@ module Fabrique {
 
             private addNineSliceLoader() {
                 (<Fabrique.Plugins.NineSliceLoader>Phaser.Loader.prototype).nineSlice = function (key:string, url:string, top:number, left?:number, right?:number, bottom?:number) {
-
-                    if (!left) {
-                        left = top;
-                    }
-
-                    if (!right) {
-                        right = left;
-                    }
-
-                    if (!bottom) {
-                        bottom = top;
-                    }
-
-                    var cacheData = {
-                        top: top,
-                        bottom: bottom,
-                        left: left,
-                        right: right
+                    let cacheData: NineSliceCacheData = {
+                        top: top
                     };
+
+                    if (left) {
+                        cacheData.left = left;
+                    }
+
+                    if (right) {
+                        cacheData.right = right;
+                    }
+
+                    if (bottom) {
+                        cacheData.bottom = bottom;
+                    }
 
                     this.addToFileList('image', key, url);
 
@@ -66,18 +69,18 @@ module Fabrique {
              * game.add.NineSlice();
              */
             private addNineSliceFactory() {
-                (<Fabrique.Plugins.NineSliceObjectFactory>Phaser.GameObjectFactory.prototype).nineSlice = function (x:number, y:number, key:string, width:number, height:number, group?:Phaser.Group):Fabrique.NineSlice {
+                (<Fabrique.Plugins.NineSliceObjectFactory>Phaser.GameObjectFactory.prototype).nineSlice = function (x:number, y:number, key:string, frame: string, width:number, height:number, group?:Phaser.Group):Fabrique.NineSlice {
                     if (group === undefined) {
                         group = this.world;
                     }
 
-                    var nineSliceObject = new Fabrique.NineSlice(this.game, x, y, key, width, height);
+                    var nineSliceObject = new Fabrique.NineSlice(this.game, x, y, key, frame, width, height);
 
                     return group.add(nineSliceObject);
                 };
 
-                (<Fabrique.Plugins.NineSliceObjectCreator>Phaser.GameObjectCreator.prototype).nineSlice = function (x:number, y:number, key:string, width:number, height:number):Fabrique.NineSlice {
-                    return new Fabrique.NineSlice(this.game, x, y, key, width, height);
+                (<Fabrique.Plugins.NineSliceObjectCreator>Phaser.GameObjectCreator.prototype).nineSlice = function (x:number, y:number, key:string, frame: string, width:number, height:number):Fabrique.NineSlice {
+                    return new Fabrique.NineSlice(this.game, x, y, key, frame, width, height);
                 };
             }
 

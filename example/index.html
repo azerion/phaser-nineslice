@@ -28,13 +28,12 @@
             game.plugins.add(Fabrique.Plugins.NineSlice);
 
             game.load.nineSlice('robot', 'image.png', 24);
-
         }
 
         function create(){
             // add a container for 9slice
             //Note:  Initial scaling numbers must not be lower than the width of the imageś corners
-            sliceContainer = game.add.nineSlice(5, 5, 'robot', 48, 48);
+            sliceContainer = game.add.nineSlice(5, 5, 'robot', null, 48, 48);
         }
 
 

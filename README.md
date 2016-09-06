@@ -2,6 +2,11 @@ Phaser Nineslice
 ================
 Phaser-Ninslice plugin adds 9 slice scaling support to Phaser!
 
+Key features:
+ * Blazing fast
+ * Low memory usage
+ * Easy to use API
+
 Getting Started
 ---------------
 First you want to get a fresh copy of the plugin. You can get it from this repo or from npm, ain't that handy.
@@ -65,7 +70,7 @@ container.y = 20;
 game.add.existing(container);
 
 //Or we use the Constructor
-var nineSlice = new Fabrique.NineSlice(game, 0, 0, 'my-image', 200, 50);
+var nineSlice = new Fabrique.NineSlice(game, 0, 0, 'my-image', null, 200, 50);
 nineSlice.x = 50;
 nineSlice.y = 50;
 game.add.existing(nineSlice);
@@ -78,15 +83,12 @@ game.add.existing(nineSlice);
 When using resize method, make sure values are not lower than the width of the image corners
 
 ```javascript
-var sliceContainer = game.add.nineSlice(5, 5, 'image', 48, 48);
+var sliceContainer = game.add.nineSlice(5, 5, 'image', null, 48, 48);
 sliceContainer.resize(100, 200);
 ```
-
-Changelog
----------
-### 1.0.1
-* Initial release
 
 Disclaimer
 ----------
 We at OrangeGames just love playing and creating awesome games. We aren't affiliated with Phaser.io. We just needed some awesome nine slice containers in our awesome HTML5 games. Feel free to use it for enhancing your own awesome games!
+
+Phaser NineSlice is distributed under the MIT license. All 3rd party libraries and components are distributed under their respective license terms.

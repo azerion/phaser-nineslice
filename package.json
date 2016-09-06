@@ -1,7 +1,7 @@
 {
   "name": "phaser-nineslice",
   "author": "OrangeGames",
-  "version": "1.0.0",
+  "version": "1.1.3",
   "description": "NineSlice plugin for Phaser.io!",
   "contributors": [
     {
@@ -25,7 +25,7 @@
     "grunt-contrib-clean": "0.6.0",
     "grunt-contrib-uglify": "0.7.0",
     "grunt-typescript": "0.8.0",
-    "phaser": "2.4.4",
+    "phaser": "2.6.2",
     "typescript": "1.6.x"
   },
   "engines": {
