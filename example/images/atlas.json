@@ -1,0 +1,28 @@
+{"frames": [
+
+{
+	"filename": "btn_clean.png",
+	"frame": {"x":1,"y":1,"w":61,"h":76},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":61,"h":76},
+	"sourceSize": {"w":61,"h":76}
+},
+{
+	"filename": "inputfield.png",
+	"frame": {"x":64,"y":1,"w":51,"h":65},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":51,"h":65},
+	"sourceSize": {"w":51,"h":65}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "atlas.png",
+	"format": "RGBA8888",
+	"size": {"w":116,"h":78},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:41035509100cdd491bfb91d44aa51b48:7078dbcb2388bdf916bf7b4811121802:cbce6b53f0f49e0bf15173c25c41f876$"
+}
+}

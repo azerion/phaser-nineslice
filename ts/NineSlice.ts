@@ -1,5 +1,5 @@
-module Fabrique {
-    import NineSliceCacheData = Fabrique.Plugins.NineSliceCacheData;
+module PhaserNineSlice {
+    import NineSliceCacheData = PhaserNineSlice.NineSliceCacheData;
     export class NineSlice extends Phaser.Sprite {
         /**
          * The sizes of the edges
@@ -22,7 +22,7 @@ module Fabrique {
         public texture: Phaser.RenderTexture;
         private baseFrame: PIXI.Rectangle;
 
-        constructor(game:Fabrique.Plugins.NineSliceGame, x:number, y:number, key: string, frame: string, width:number, height:number, data?: NineSliceCacheData) {
+        constructor(game: PhaserNineSlice.NineSliceGame, x:number, y:number, key: string, frame: string, width:number, height:number, data?: NineSliceCacheData) {
             super(game, x, y, key, frame);
 
             this.baseTexture = this.texture.baseTexture;

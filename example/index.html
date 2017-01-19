@@ -4,7 +4,7 @@
     <title>Example for Phaser Nine Slice</title>
 
     <!-- Include Phaser Nine Slice JS -->
-    <script type="text/javascript" src="../node_modules/phaser/build/phaser.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/phaser/2.6.2/phaser.min.js"></script>
     <script type="text/javascript" src="../build/phaser-nineslice.js"></script>
 
     <!-- Game we want to track -->
@@ -25,15 +25,34 @@
 
         function preload(){
             // add plugins in one of the states e.g. preload or init
-            game.plugins.add(Fabrique.Plugins.NineSlice);
+            game.plugins.add(PhaserNineSlice.Plugin);
 
-            game.load.nineSlice('robot', 'image.png', 24);
+            game.load.nineSlice('robot', 'images/image.png', 24);
+            game.load.atlas('buttons', 'images/atlas.png', 'images/atlas.json');
         }
 
         function create(){
             // add a container for 9slice
-            //Note:  Initial scaling numbers must not be lower than the width of the imageś corners
+            //Note:  Initial scaling numbers must not be lower than the width of the images corners
             sliceContainer = game.add.nineSlice(5, 5, 'robot', null, 48, 48);
+
+            //Add an nineslice image with an texture atlas
+            var sliceButton = new PhaserNineSlice.NineSlice(
+                    game,           // Phaser.Game
+                    150,            // x position
+                    100,            // y position
+                    'buttons',      // atlas key
+                    'btn_clean.png',// Image frame
+                    200,            // expected width
+                    100,            // expected height
+                    { //And this is the framedata, normally this is passed when preloading. Check README for details
+                        top: 20,    // Amount of pixels for top
+                        bottom: 23, // Amount of pixels for bottom
+                        left: 27,   // Amount of pixels for left
+                        right: 28   // Amount of pixels for right
+                    }
+            );
+            this.game.add.existing(sliceButton);
         }
 
 

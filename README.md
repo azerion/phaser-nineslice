@@ -16,7 +16,7 @@ npm install @orange-games/phaser-nineslice --save-dev
 
 Next up you'd want to add it to your list of js sources you load into your game
 ```html
-<script src="node_modules/phaser-nineslice/build/phaser-nineslice.js"></script>
+<script src="node_modules/@orange-gamesphaser-nineslice/build/phaser-nineslice.js"></script>
 ```
 
 Usage
