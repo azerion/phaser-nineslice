@@ -6,6 +6,10 @@ Key features:
  * Blazing fast
  * Low memory usage
  * Easy to use API
+ 
+*Imporant*
+From here on this library will be published and updated under [@orange-games/phaser-nineslice](https://www.npmjs.com/package/@orange-games/phaser-nineslice) at NPM, the old [phaser-nineslice](https://www.npmjs.com/package/phaser-nineslice) will no longer be maintained.
+If you are comming from v1 you can read the migration guide at the bottom
 
 Getting Started
 ---------------
@@ -16,7 +20,7 @@ npm install @orange-games/phaser-nineslice --save-dev
 
 Next up you'd want to add it to your list of js sources you load into your game
 ```html
-<script src="node_modules/@orange-gamesphaser-nineslice/build/phaser-nineslice.js"></script>
+<script src="node_modules/@orange-games/phaser-nineslice/build/phaser-nineslice.js"></script>
 ```
 
 Usage
@@ -29,7 +33,7 @@ So, to load the plugin, include it one of the Phaser States.
 
 ```javascript
 function preload(){
-game.plugins.add(Fabrique.Plugins.NineSlice);
+game.plugins.add(PhaserNineSlice.NineSlice);
 }
 ```
 The plugin will patch your Phaser game with additional load/add/make methods so the ninslice container fits up in Phaser like any normal object!
@@ -70,12 +74,33 @@ container.y = 20;
 game.add.existing(container);
 
 //Or we use the Constructor
-var nineSlice = new Fabrique.NineSlice(game, 0, 0, 'my-image', null, 200, 50);
+var nineSlice = new PhaserNineSlice.NineSlice(game, 0, 0, 'my-image', null, 200, 50);
 nineSlice.x = 50;
 nineSlice.y = 50;
 game.add.existing(nineSlice);
 ```
 
+### Using a Texture Atlas
+It's also possible to use aan image that's located inside a Texture atlas. The only difference then is that you don't have to preload the image, instead you use the object's constructor and pass the framedata directly on creation:
+```javascript
+//Add an nineslice image with an texture atlas
+var sliceButton = new PhaserNineSlice.NineSlice(
+        game,           // Phaser.Game
+        150,            // x position
+        100,            // y position
+        'buttons',      // atlas key
+        'btn_clean.png',// Image frame
+        200,            // expected width
+        100,            // expected height
+        { //And this is the framedata, normally this is passed when preloading. Check README for details
+            top: 20,    // Amount of pixels for top
+            bottom: 23, // Amount of pixels for bottom
+            left: 27,   // Amount of pixels for left
+            right: 28   // Amount of pixels for right
+        }
+);
+this.game.add.existing(sliceButton);
+```
 
 ### Resize method
 
@@ -86,6 +111,17 @@ When using resize method, make sure values are not lower than the width of the i
 var sliceContainer = game.add.nineSlice(5, 5, 'image', null, 48, 48);
 sliceContainer.resize(100, 200);
 ```
+
+Migrating from v1
+-----------------
+the API of the objects is the same as before but the namespace changed. We decided to remove the Fabrique namespace, and house the plugin in it's own (PhaserNineSlice).
+so:
+Fabrique.Plugins.NineSlice
+becomes:
+PhaserNineSlice.Plugin
+
+and all other references of Fabrique.Plugins can be replaced with PhaserNineSlice.
+If you are still unsure how or what, both the example and this readme have been adjusted to work with the new namespace.
 
 Disclaimer
 ----------
