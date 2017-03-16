@@ -33,7 +33,7 @@ So, to load the plugin, include it one of the Phaser States.
 
 ```javascript
 function preload(){
-game.plugins.add(PhaserNineSlice.NineSlice);
+game.plugins.add(PhaserNineSlice.Plugin);
 }
 ```
 The plugin will patch your Phaser game with additional load/add/make methods so the ninslice container fits up in Phaser like any normal object!
