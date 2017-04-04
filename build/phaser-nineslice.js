@@ -3,7 +3,7 @@
  * NineSlice plugin for Phaser.io!
  *
  * OrangeGames
- * Build at 19-01-2017
+ * Build at 04-04-2017
  * Released under MIT License 
  */
 
@@ -58,6 +58,7 @@ var PhaserNineSlice;
             var textureYs = [0, this.topSize, this.baseFrame.height - this.bottomSize, this.baseFrame.height];
             var finalXs = [0, this.leftSize, this.localWidth - this.rightSize, this.localWidth];
             var finalYs = [0, this.topSize, this.localHeight - this.bottomSize, this.localHeight];
+            this.texture.clear();
             for (var yi = 0; yi < 3; yi++) {
                 for (var xi = 0; xi < 3; xi++) {
                     var s = this.createTexturePart(textureXs[xi], textureYs[yi], textureXs[xi + 1] - textureXs[xi], textureYs[yi + 1] - textureYs[yi]);
