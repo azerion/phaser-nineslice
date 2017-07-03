@@ -1,17 +1,22 @@
 /*!
- * phaser-nineslice - version 2.0.0 
+ * phaser-nineslice - version 2.0.1 
  * NineSlice plugin for Phaser.io!
  *
  * OrangeGames
- * Build at 04-04-2017
+ * Build at 03-07-2017
  * Released under MIT License 
  */
 
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var PhaserNineSlice;
 (function (PhaserNineSlice) {
     var NineSlice = (function (_super) {
@@ -72,6 +77,17 @@ var PhaserNineSlice;
             this.localWidth = width;
             this.localHeight = height;
             this.renderTexture();
+        };
+        NineSlice.prototype.destroy = function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            _super.prototype.destroy.call(this, args[0]);
+            this.texture.destroy(true);
+            this.texture = null;
+            this.baseTexture = null;
+            this.baseFrame = null;
         };
         NineSlice.prototype.createTexturePart = function (x, y, width, height) {
             var frame = new PIXI.Rectangle(this.baseFrame.x + this.texture.frame.x + x, this.baseFrame.y + this.texture.frame.y + y, Math.max(width, 1), Math.max(height, 1));

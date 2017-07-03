@@ -6,4 +6,4 @@ This Issue is about (delete as applicable)
 * An error in the example
 * A problem with my own code
 
-API errors must include example code showing what happens, and why you don't believe this is the expected behavior. Issues posted without code take _far_ longer to get resolved, _if ever_.
+API errors must include example code showing what happens, and why you don't believe this is the expected behavior. Also mention the Phaser version you're using for your project. Issues posted without code take _far_ longer to get resolved, _if ever_.

@@ -108,6 +108,19 @@ module PhaserNineSlice {
         }
 
         /**
+         * Override the destroy to fix PIXI leaking CanvasBuffers
+         *
+         * @param args
+         */
+        public destroy(...args: any[]): void {
+            super.destroy(args[0]);
+            this.texture.destroy(true);
+            this.texture = null;
+            this.baseTexture = null;
+            this.baseFrame = null;
+        }
+
+        /**
          * Here we create a sprite part for the container based on the given input
          *
          * @param x
