@@ -76,6 +76,7 @@ module PhaserNineSlice {
             var finalXs:number[] = [0, this.leftSize, this.localWidth - this.rightSize, this.localWidth];
             var finalYs:number[] = [0, this.topSize, this.localHeight - this.bottomSize, this.localHeight];
 
+            (<Phaser.RenderTexture>this.texture).clear();
             for (var yi = 0; yi < 3; yi++) {
                 for (var xi = 0; xi < 3; xi++) {
                     var s = this.createTexturePart(
@@ -104,6 +105,19 @@ module PhaserNineSlice {
             this.localHeight = height;
 
             this.renderTexture();
+        }
+
+        /**
+         * Override the destroy to fix PIXI leaking CanvasBuffers
+         *
+         * @param args
+         */
+        public destroy(...args: any[]): void {
+            super.destroy(args[0]);
+            this.texture.destroy(true);
+            this.texture = null;
+            this.baseTexture = null;
+            this.baseFrame = null;
         }
 
         /**

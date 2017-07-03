@@ -36,7 +36,12 @@
             //Note:  Initial scaling numbers must not be lower than the width of the images corners
             sliceContainer = game.add.nineSlice(5, 5, 'robot', null, 48, 48);
 
+	        createButton(game);
+        }
+
+        function createButton(game) {
             //Add an nineslice image with an texture atlas
+            console.log('creating button!');
             var sliceButton = new PhaserNineSlice.NineSlice(
                     game,           // Phaser.Game
                     150,            // x position
@@ -52,8 +57,15 @@
                         right: 28   // Amount of pixels for right
                     }
             );
-            this.game.add.existing(sliceButton);
-        }
+
+            sliceButton.inputEnabled = true;
+            sliceButton.events.onInputDown.add(function () {
+                console.log('destroying button!');
+                this.destroy();
+                createButton(game);
+            }, sliceButton);
+            game.add.existing(sliceButton);
+	    }
 
 
         function update(){
@@ -84,11 +96,7 @@
             }
 
         }
-
-
-
     </script>
-
 </head>
 <body>
 </body>
