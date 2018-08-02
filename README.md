@@ -1,6 +1,7 @@
 Phaser Nineslice
 ================
-Phaser-Nineslice plugin adds 9-slice scaling support to Phaser!
+Phaser-Nineslice plugin adds 9-slice scaling support to Phaser v2 and CE. An implementation for v3 is also
+available thanks to [jdotrjs](https://github.com/jdotrjs) as [phaser3-nineslice](https://github.com/jdotrjs/phaser3-nineslice).
 
 Key features:
  * Blazing fast
