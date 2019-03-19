@@ -2,8 +2,8 @@
  * phaser-nineslice - version 2.0.1 
  * NineSlice plugin for Phaser.io!
  *
- * OrangeGames
- * Build at 03-07-2017
+ * Azerion
+ * Build at 19-03-2019
  * Released under MIT License 
  */
 

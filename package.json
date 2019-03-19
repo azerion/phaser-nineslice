@@ -1,22 +1,22 @@
 {
-  "name": "@orange-games/phaser-nineslice",
-  "author": "OrangeGames",
+  "name": "@azerion/phaser-nineslice",
+  "author": "Azerion",
   "version": "2.0.1",
   "description": "NineSlice plugin for Phaser.io!",
   "contributors": [
     {
       "name": "Ale Bles",
-      "email": "a.bles@orangegames.com"
+      "email": "a.bles@azerion.com"
     }
   ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:orange-games/phaser-nineslice.git"
+    "url": "git@github.com:azerion/phaser-nineslice.git"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/orange-games/phaser-nineslice/raw/master/LICENSE"
+      "url": "https://github.com/azerion/phaser-nineslice/raw/master/LICENSE"
     }
   ],
   "config": {
